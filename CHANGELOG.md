@@ -1,3 +1,21 @@
+# v0.0.2 (Wed Feb 14 2024)
+
+#### 🐛 Bug Fix
+
+- implementation of  `<Tabs />` component [#1](https://github.com/selsa-inube/inubekit-tabs/pull/1) ([@JanuarAsprilla](https://github.com/JanuarAsprilla))
+
+#### ⚠️ Pushed to `main`
+
+- feat: remove unused dependency and update peer dependency versions (carlos3k11@gmail.com)
+- Initial commit ([@JanuarAsprilla](https://github.com/JanuarAsprilla))
+
+#### Authors: 2
+
+- Andres Babativa (carlos3k11@gmail.com)
+- Januar Asprilla  ([@JanuarAsprilla](https://github.com/JanuarAsprilla))
+
+---
+
 # v0.0.1 (Wed Jan 17 2024)
 
 #### ⚠️ Pushed to `main`
