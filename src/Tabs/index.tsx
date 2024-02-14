@@ -74,10 +74,7 @@ export const Tabs = ({
               key={selectedTab}
               selected={true}
               id={selectedTab}
-              label={
-                tabs.find((tab) => tab.id === selectedTab!)?.label ??
-                "Default Label"
-              }
+              label={tabs.find((tab) => tab.id === selectedTab)!.label}
             />
           </Stack>
         </StyledTabs>
