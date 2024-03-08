@@ -1,10 +1,7 @@
-import { ThemeProvider } from "styled-components";
-import { Tab, ITabProps } from "../index";
+import { Tab, ITab } from "../index";
 import { TabController } from "./TabController";
 
 import { props } from "../props";
-
-import { presente } from "@inubekit/foundations";
 
 const story = {
   title: "navigation/Tabs/Tab",
@@ -12,7 +9,7 @@ const story = {
   argTypes: props,
 };
 
-export const Default = (args: ITabProps) => <TabController {...args} />;
+const Default = (args: ITab) => <TabController {...args} />;
 Default.args = {
   id: "thisIsAnId",
   disabled: false,
@@ -20,16 +17,5 @@ Default.args = {
   selected: { control: null },
 };
 
-const theme = structuredClone(presente);
-
-export const Themed = (args: ITabProps) => (
-  <ThemeProvider theme={theme}>
-    <TabController {...args} />
-  </ThemeProvider>
-);
-
-Themed.args = {
-  ...Default.args,
-};
-
+export { Default };
 export default story;

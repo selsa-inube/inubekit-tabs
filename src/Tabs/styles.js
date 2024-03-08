@@ -11,7 +11,7 @@ export const StyledTabs = styled.div`
     ${({ theme }) =>
       theme?.color?.stroke?.divider?.regular ||
       inube.color.stroke.divider.regular};
-  padding: ${inube.spacing.s0} ${inube.spacing.s200};
+  padding: 0 16px;
 
   & > div {
     width: fit-content;

@@ -1,8 +1,4 @@
-import { ThemeProvider } from "styled-components";
-
-import { presente } from "@inubekit/foundations";
-
-import { Tabs, ITabsProps } from "..";
+import { Tabs, ITabs } from "..";
 import { TabsController } from "./TabsController";
 import { props, parameters } from "../props";
 
@@ -13,7 +9,7 @@ const story = {
   argTypes: props,
 };
 
-export const Default = (args: ITabsProps) => <TabsController {...args} />;
+const Default = (args: ITabs) => <TabsController {...args} />;
 Default.args = {
   tabs: [
     {
@@ -31,17 +27,5 @@ Default.args = {
   type: "tabs",
 };
 
-const theme = {
-  ...presente,
-};
-
-export const Themed = (args: ITabsProps) => (
-  <ThemeProvider theme={theme}>
-    <TabsController {...args} />
-  </ThemeProvider>
-);
-
-Themed.args = {
-  ...Default.args,
-};
+export { Default };
 export default story;

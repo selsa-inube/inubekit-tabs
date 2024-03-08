@@ -1,14 +1,14 @@
 import { Text } from "@inubekit/text";
 import { StyledTab } from "./styles";
 
-export interface ITabProps {
+interface ITab {
   label: string;
   id: string;
   disabled?: boolean;
   selected?: boolean;
 }
 
-export const Tab = (props: ITabProps) => {
+const Tab = (props: ITab) => {
   const { disabled = false, selected = false, id, label } = props;
 
   return (
@@ -25,3 +25,6 @@ export const Tab = (props: ITabProps) => {
     </StyledTab>
   );
 };
+
+export { Tab };
+export type { ITab };

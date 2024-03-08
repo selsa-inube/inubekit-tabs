@@ -5,30 +5,37 @@ import { OptionItem, OptionList } from "@inubekit/select";
 import { Stack } from "@inubekit/stack";
 import { Icon } from "@inubekit/icon";
 
-import { Tab, ITabProps } from "./Tab";
+import { Tab, ITab } from "./Tab";
 import { Types } from "./props";
 import { StyledTabs } from "./styles";
 
-export interface ITabsProps {
-  tabs: ITabProps[];
+interface ITabs {
+  tabs: ITab[];
   type?: Types;
   onChange: (id: string) => void;
   selectedTab: string;
 }
 
-export const Tabs = ({
-  tabs,
-  type = "tabs",
-  selectedTab,
-  onChange,
-}: ITabsProps) => {
+const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
   const [displayList, setDisplayList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const interceptOnChange = (e: string) => {
+    try {
+      onChange && onChange(e);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("An unknown error occurred");
+      }
+    }
+  };
 
   const handleInsideClick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const id = e.target.closest("li")?.getAttribute("id");
     if (id) {
-      onChange(id);
+      interceptOnChange(id);
       setDisplayList(false);
     }
   };
@@ -46,7 +53,7 @@ export const Tabs = ({
       if (tabElement && tabElement.tagName.toLowerCase() === "li") {
         const id = tabElement.getAttribute("id");
         if (id && tabElement.getAttribute("disabled") === null) {
-          onChange(id);
+          interceptOnChange(id);
         }
       }
     }
@@ -105,3 +112,6 @@ export const Tabs = ({
     </StyledTabs>
   );
 };
+
+export { Tabs };
+export type { ITabs };

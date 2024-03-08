@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Tabs, ITabsProps } from "..";
+import { Tabs, ITabs } from "..";
 
-export const TabsController = (props: ITabsProps) => {
+const TabsController = (props: ITabs) => {
   const { tabs, type } = props;
   const [currentTab, setCurrentTab] = useState(props.selectedTab);
 
@@ -18,3 +18,5 @@ export const TabsController = (props: ITabsProps) => {
     />
   );
 };
+
+export { TabsController };
