@@ -46,6 +46,39 @@ const Tabs = (props: ITabs) => {
         }
       } while (tabs[newIndex].disabled);
       onChange(tabs[newIndex].id);
+
+      setTimeout(() => {
+        const container = tabsContainerRef.current;
+        if (container) {
+          const tabElements = container.querySelectorAll("li");
+          if (tabElements.length > newIndex) {
+            const newTabElement = tabElements[newIndex];
+            const scrollLeftToTab = newTabElement.offsetLeft;
+            const tabWidth = newTabElement.offsetWidth;
+            const containerWidth = container.offsetWidth;
+
+            let newScrollPosition;
+
+            if (direction === "left") {
+              newScrollPosition =
+                scrollLeftToTab - containerWidth / 2 + tabWidth / 2;
+            } else {
+              newScrollPosition =
+                scrollLeftToTab - containerWidth / 2 - tabWidth / 2 + tabWidth;
+            }
+            container.scrollTo({
+              left: Math.max(
+                0,
+                Math.min(
+                  newScrollPosition,
+                  container.scrollWidth - containerWidth,
+                ),
+              ),
+              behavior: "smooth",
+            });
+          }
+        }
+      }, 0);
     }
   };
 
