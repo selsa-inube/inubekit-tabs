@@ -1,5 +1,6 @@
 import { Text } from "@inubekit/text";
 import { StyledTab } from "./styles";
+import { inube } from "@inubekit/foundations";
 
 interface ITab {
   label: string;
@@ -16,7 +17,12 @@ const Tab = (props: ITab) => {
       <Text
         type="label"
         size="medium"
-        appearance={selected ? "primary" : "dark"}
+        appearance={
+          selected
+            ? (inube.tabs.content.appearance
+                .selected as keyof typeof inube.text)
+            : "gray"
+        }
         disabled={disabled}
         textAlign="start"
       >

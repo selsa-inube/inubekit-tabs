@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import {
+  MdChevronLeft,
+  MdChevronRight,
+  MdKeyboardArrowDown,
+} from "react-icons/md";
 
 import { OptionItem, OptionList } from "@inubekit/select";
 import { Stack } from "@inubekit/stack";
@@ -7,18 +11,43 @@ import { Icon } from "@inubekit/icon";
 
 import { Tab, ITab } from "./Tab";
 import { Types } from "./props";
-import { StyledTabs } from "./styles";
+import { StyledTabs, StyledContainer } from "./styles";
 
 interface ITabs {
   tabs: ITab[];
   type?: Types;
   onChange: (id: string) => void;
   selectedTab: string;
+  showChevrons?: boolean;
 }
 
-const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
+const Tabs = (props: ITabs) => {
+  const {
+    tabs,
+    type = "tabs",
+    onChange,
+    selectedTab,
+    showChevrons = false,
+  } = props;
   const [displayList, setDisplayList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const findTabIndex = (id: string) => tabs.findIndex((tab) => tab.id === id);
+
+  const handleChevronClick = (direction: "left" | "right") => {
+    const currentIndex = findTabIndex(selectedTab);
+    if (currentIndex !== -1) {
+      let newIndex = currentIndex;
+      do {
+        newIndex += direction === "left" ? -1 : 1;
+        if (newIndex < 0 || newIndex >= tabs.length) {
+          return;
+        }
+      } while (tabs[newIndex].disabled);
+      onChange(tabs[newIndex].id);
+    }
+  };
 
   const interceptOnChange = (e: string) => {
     try {
@@ -97,19 +126,41 @@ const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
   }
 
   return (
-    <StyledTabs onClick={handleTabClick}>
-      <Stack gap="24px">
-        {tabs.map((tab) => (
-          <Tab
-            key={tab.id}
-            disabled={tab.disabled}
-            selected={tab.id === selectedTab}
-            id={tab.id}
-            label={tab.label}
+    <StyledContainer onClick={handleTabClick}>
+      <Stack justifyContent="space-between" gap="12px">
+        {showChevrons && type === "tabs" && (
+          <Icon
+            variant="filled"
+            icon={<MdChevronLeft />}
+            appearance="light"
+            cursorHover
+            onClick={() => handleChevronClick("left")}
           />
-        ))}
+        )}
+        <StyledTabs ref={tabsContainerRef} onClick={handleTabClick}>
+          <Stack gap="24px">
+            {tabs.map((tab) => (
+              <Tab
+                key={tab.id}
+                disabled={tab.disabled}
+                selected={tab.id === selectedTab}
+                id={tab.id}
+                label={tab.label}
+              />
+            ))}
+          </Stack>
+        </StyledTabs>
+        {showChevrons && type === "tabs" && (
+          <Icon
+            variant="filled"
+            icon={<MdChevronRight />}
+            appearance="light"
+            cursorHover
+            onClick={() => handleChevronClick("right")}
+          />
+        )}
       </Stack>
-    </StyledTabs>
+    </StyledContainer>
   );
 };
 

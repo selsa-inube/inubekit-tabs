@@ -9,10 +9,7 @@ const StyledTab = styled.li`
   border-bottom: ${({ selected, disabled, theme }) =>
     selected &&
     !disabled &&
-    `4px solid ${
-      theme?.color?.stroke?.primary?.regular ||
-      inube.color.stroke.primary.regular
-    }`};
+    `4px solid ${theme?.palette?.blue?.B400 || inube.palette.blue.B400}`};
 
   & > p {
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};

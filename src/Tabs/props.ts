@@ -41,4 +41,12 @@ export const props = {
       defaultValue: { summary: "tab" },
     },
   },
+  showChevrons: {
+    options: [true, false],
+    control: { type: "select" },
+    description: "shall determine if the chevron-controls be shown or not",
+    table: {
+      defaultValue: { summary: false },
+    },
+  },
 };
