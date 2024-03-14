@@ -14,6 +14,8 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "react",
+        "react-dom",
+        "react-icons/md",
         "styled-components",
         "react-icons/md",
         "react/jsx-runtime",
