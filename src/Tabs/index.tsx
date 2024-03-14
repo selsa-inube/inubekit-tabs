@@ -12,6 +12,12 @@ import { Icon } from "@inubekit/icon";
 import { Tab, ITab } from "./Tab";
 import { Types } from "./props";
 import { StyledTabs, StyledContainer } from "./styles";
+import {
+  handleChevronClick,
+  handleInsideClick,
+  handleOutsideClick,
+  handleTabClick,
+} from "./utils";
 
 interface ITabs {
   tabs: ITab[];
@@ -33,100 +39,26 @@ const Tabs = (props: ITabs) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const tabsContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const findTabIndex = (id: string) => tabs.findIndex((tab) => tab.id === id);
-
-  const handleChevronClick = (direction: "left" | "right") => {
-    const currentIndex = findTabIndex(selectedTab);
-    if (currentIndex !== -1) {
-      let newIndex = currentIndex;
-      do {
-        newIndex += direction === "left" ? -1 : 1;
-        if (newIndex < 0 || newIndex >= tabs.length) {
-          return;
-        }
-      } while (tabs[newIndex].disabled);
-      onChange(tabs[newIndex].id);
-
-      setTimeout(() => {
-        const container = tabsContainerRef.current;
-        if (container) {
-          const tabElements = container.querySelectorAll("li");
-          if (tabElements.length > newIndex) {
-            const newTabElement = tabElements[newIndex];
-            const scrollLeftToTab = newTabElement.offsetLeft;
-            const tabWidth = newTabElement.offsetWidth;
-            const containerWidth = container.offsetWidth;
-
-            let newScrollPosition;
-
-            if (direction === "left") {
-              newScrollPosition =
-                scrollLeftToTab - containerWidth / 2 + tabWidth / 2;
-            } else {
-              newScrollPosition =
-                scrollLeftToTab - containerWidth / 2 - tabWidth / 2 + tabWidth;
-            }
-            container.scrollTo({
-              left: Math.max(
-                0,
-                Math.min(
-                  newScrollPosition,
-                  container.scrollWidth - containerWidth,
-                ),
-              ),
-              behavior: "smooth",
-            });
-          }
-        }
-      }, 0);
-    }
+  const helperHandleChevron = (direction: "left" | "right") => {
+    handleChevronClick(
+      direction,
+      tabs,
+      selectedTab,
+      onChange,
+      tabsContainerRef,
+    );
   };
 
-  const interceptOnChange = (e: string) => {
-    try {
-      onChange && onChange(e);
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      } else {
-        throw new Error("An unknown error occurred");
-      }
-    }
-  };
-
-  const handleInsideClick = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const id = e.target.closest("li")?.getAttribute("id");
-    if (id) {
-      interceptOnChange(id);
-      setDisplayList(false);
-    }
-  };
-
-  const handleOutsideClick = (e: MouseEvent) => {
-    if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
-      setDisplayList(false);
-    }
-  };
-
-  const handleTabClick = (e: React.MouseEvent) => {
-    const targetElement = e.target;
-    if (targetElement instanceof HTMLElement) {
-      const tabElement = targetElement.closest("[id]");
-      if (tabElement && tabElement.tagName.toLowerCase() === "li") {
-        const id = tabElement.getAttribute("id");
-        if (id && tabElement.getAttribute("disabled") === null) {
-          interceptOnChange(id);
-        }
-      }
-    }
-  };
+  const handleInsideClickWithState = (e: React.ChangeEvent<HTMLInputElement>) =>
+    handleInsideClick(e, onChange, setDisplayList);
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
+    const handleOutside = (e: MouseEvent) =>
+      handleOutsideClick(e, wrapperRef, setDisplayList);
+    document.addEventListener("mousedown", handleOutside);
+
+    return () => document.removeEventListener("mousedown", handleOutside);
+  }, [wrapperRef, setDisplayList]);
 
   if (type === "select") {
     return (
@@ -148,7 +80,7 @@ const Tabs = (props: ITabs) => {
           </Stack>
         </StyledTabs>
         {displayList && (
-          <OptionList onClick={handleInsideClick}>
+          <OptionList onClick={handleInsideClickWithState}>
             {tabs.map((tab) => (
               <OptionItem key={tab.id} id={tab.id} label={tab.label} />
             ))}
@@ -167,7 +99,7 @@ const Tabs = (props: ITabs) => {
             icon={<MdChevronLeft />}
             appearance="light"
             cursorHover
-            onClick={() => handleChevronClick("left")}
+            onClick={() => helperHandleChevron("left")}
           />
         )}
         <StyledTabs ref={tabsContainerRef} onClick={handleTabClick}>
@@ -189,7 +121,7 @@ const Tabs = (props: ITabs) => {
             icon={<MdChevronRight />}
             appearance="light"
             cursorHover
-            onClick={() => handleChevronClick("right")}
+            onClick={() => helperHandleChevron("right")}
           />
         )}
       </Stack>
