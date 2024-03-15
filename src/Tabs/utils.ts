@@ -1,37 +1,6 @@
-import { ITab } from "./Tab";
 import React from "react";
 
 type OnChangeType = (id: string) => void;
-
-const calculateNewTabIndex = (
-  tabs: ITab[],
-  currentIndex: number,
-  direction: "left" | "right",
-): number => {
-  let newIndex = currentIndex;
-  do {
-    newIndex += direction === "left" ? -1 : 1;
-    if (newIndex < 0 || newIndex >= tabs.length) {
-      return -1;
-    }
-  } while (tabs[newIndex].disabled);
-  return newIndex;
-};
-
-const calculateScrollPosition = (
-  container: HTMLElement,
-  newTabIndex: number,
-): number => {
-  const tabElements = container.querySelectorAll("li");
-  if (tabElements.length > newTabIndex) {
-    const newTabElement = tabElements[newTabIndex] as HTMLElement;
-    const scrollLeftToTab = newTabElement.offsetLeft;
-    const tabWidth = newTabElement.offsetWidth;
-    const containerWidth = container.offsetWidth;
-    return scrollLeftToTab - containerWidth / 2 + tabWidth / 2;
-  }
-  return container.scrollLeft;
-};
 
 const smoothScrollToPosition = (
   container: HTMLElement,
@@ -45,27 +14,13 @@ const smoothScrollToPosition = (
 
 const handleChevronClick = (
   direction: "left" | "right",
-  tabs: ITab[],
-  selectedTab: string,
-  onChange: (id: string) => void,
   tabsContainerRef: React.RefObject<HTMLDivElement>,
 ): void => {
-  const currentIndex = tabs.findIndex((tab) => tab.id === selectedTab);
-  if (currentIndex !== -1) {
-    const newIndex = calculateNewTabIndex(tabs, currentIndex, direction);
-    if (newIndex !== -1) {
-      onChange(tabs[newIndex].id);
-      setTimeout(() => {
-        const container = tabsContainerRef.current;
-        if (container) {
-          const newScrollPosition = calculateScrollPosition(
-            container,
-            newIndex,
-          );
-          smoothScrollToPosition(container, newScrollPosition);
-        }
-      }, 0);
-    }
+  if (tabsContainerRef.current) {
+    const container = tabsContainerRef.current;
+    const scrollAmount = direction === "right" ? 150 : -150;
+    const newScrollPosition = container.scrollLeft + scrollAmount;
+    smoothScrollToPosition(container, newScrollPosition);
   }
 };
 
@@ -103,17 +58,15 @@ const handleOutsideClick = (
   }
 };
 
-const handleTabClick = (e: React.MouseEvent, onChange: OnChangeType) => {
-  const targetElement = e.target as HTMLElement;
-  const tabElement = targetElement.closest("[id]") as HTMLElement;
-  if (
-    tabElement &&
-    tabElement.tagName.toLowerCase() === "li" &&
-    tabElement.getAttribute("disabled") === null
-  ) {
-    const id = tabElement.getAttribute("id");
-    if (id) {
-      interceptOnChange(onChange, id);
+const handleTabClick = (onChange: OnChangeType) => (e: React.MouseEvent) => {
+  const targetElement = e.target;
+  if (targetElement instanceof HTMLElement) {
+    const tabElement = targetElement.closest("[id]");
+    if (tabElement && tabElement.tagName.toLowerCase() === "li") {
+      const id = tabElement.getAttribute("id");
+      if (id && tabElement.getAttribute("disabled") === null) {
+        interceptOnChange(onChange, id);
+      }
     }
   }
 };

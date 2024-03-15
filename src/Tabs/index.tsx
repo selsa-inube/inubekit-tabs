@@ -11,7 +11,7 @@ import { Icon } from "@inubekit/icon";
 
 import { Tab, ITab } from "./Tab";
 import { Types } from "./props";
-import { StyledTabs, StyledContainer } from "./styles";
+import { StyledContainer, StyledTabs } from "./styles";
 import {
   handleChevronClick,
   handleInsideClick,
@@ -27,26 +27,19 @@ interface ITabs {
   showChevrons?: boolean;
 }
 
-const Tabs = (props: ITabs) => {
-  const {
-    tabs,
-    type = "tabs",
-    onChange,
-    selectedTab,
-    showChevrons = false,
-  } = props;
+const Tabs = ({
+  tabs,
+  type = "tabs",
+  selectedTab,
+  onChange,
+  showChevrons = false,
+}: ITabs) => {
   const [displayList, setDisplayList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const tabsContainerRef = useRef<HTMLDivElement | null>(null);
 
   const helperHandleChevron = (direction: "left" | "right") => {
-    handleChevronClick(
-      direction,
-      tabs,
-      selectedTab,
-      onChange,
-      tabsContainerRef,
-    );
+    handleChevronClick(direction, tabsContainerRef);
   };
 
   const handleInsideClickWithState = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -91,7 +84,7 @@ const Tabs = (props: ITabs) => {
   }
 
   return (
-    <StyledContainer onClick={handleTabClick}>
+    <StyledContainer>
       <Stack justifyContent="space-between" gap="12px">
         {showChevrons && type === "tabs" && (
           <Icon
@@ -102,7 +95,7 @@ const Tabs = (props: ITabs) => {
             onClick={() => helperHandleChevron("left")}
           />
         )}
-        <StyledTabs ref={tabsContainerRef} onClick={handleTabClick}>
+        <StyledTabs ref={tabsContainerRef} onClick={handleTabClick(onChange)}>
           <Stack gap="24px">
             {tabs.map((tab) => (
               <Tab
