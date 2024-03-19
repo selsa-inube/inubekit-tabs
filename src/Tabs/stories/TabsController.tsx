@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tabs, ITabs } from "..";
 
 const TabsController = (props: ITabs) => {
-  const { tabs, type, showChevrons } = props;
+  const { tabs, scroll } = props;
   const [currentTab, setCurrentTab] = useState(props.selectedTab);
 
   const onChange = (tabId: string) => {
@@ -12,10 +12,9 @@ const TabsController = (props: ITabs) => {
   return (
     <Tabs
       tabs={tabs}
-      type={type}
+      scroll={scroll}
       onChange={onChange}
       selectedTab={currentTab}
-      showChevrons={showChevrons}
     />
   );
 };

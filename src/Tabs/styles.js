@@ -9,14 +9,6 @@ const StyledTabs = styled.div`
   width: 100%;
   & > div {
     width: fit-content;
-    ${({ type }) =>
-      type === "select" &&
-      `
-        & > li > p {
-          position: relative;
-          top: 0.5rem;
-        }
-      `}
   }
   & > div > ul {
     position: absolute;

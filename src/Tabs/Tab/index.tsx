@@ -13,7 +13,12 @@ const Tab = (props: ITab) => {
   const { disabled = false, selected = false, id, label } = props;
 
   return (
-    <StyledTab disabled={disabled} selected={selected} id={id}>
+    <StyledTab
+      $appearance={inube.tabs.content.appearance}
+      disabled={disabled}
+      selected={selected}
+      id={id}
+    >
       <Text
         type="label"
         size="medium"

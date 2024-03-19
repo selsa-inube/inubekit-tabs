@@ -6,10 +6,11 @@ const StyledTab = styled.li`
   width: fit-content;
   user-select: none;
   list-style-type: none;
-  border-bottom: ${({ selected, disabled, theme }) =>
+  border-bottom: ${({ appearance, selected, disabled, theme }) =>
+    appearance &&
     selected &&
     !disabled &&
-    `4px solid ${theme?.palette?.blue?.B400 || inube.palette.blue.B400}`};
+    `4px solid ${theme?.text?.[appearance]?.content.color.regular || inube.text[appearance].content.color.regular}`};
 
   & > p {
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};

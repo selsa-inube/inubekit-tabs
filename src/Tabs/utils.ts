@@ -48,16 +48,6 @@ const handleInsideClick = (
   }
 };
 
-const handleOutsideClick = (
-  e: MouseEvent,
-  wrapperRef: React.RefObject<HTMLDivElement>,
-  setDisplayList: React.Dispatch<React.SetStateAction<boolean>>,
-) => {
-  if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
-    setDisplayList(false);
-  }
-};
-
 const handleTabClick = (onChange: OnChangeType) => (e: React.MouseEvent) => {
   const targetElement = e.target;
   if (targetElement instanceof HTMLElement) {
@@ -75,6 +65,5 @@ export {
   handleChevronClick,
   interceptOnChange,
   handleInsideClick,
-  handleOutsideClick,
   handleTabClick,
 };

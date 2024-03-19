@@ -33,7 +33,7 @@ Default.args = {
     },
   ],
   selectedTab: "generalInformation",
-  type: "tabs",
+  scroll: true,
   showChevrons: true,
 };
 

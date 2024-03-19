@@ -21,7 +21,6 @@ export default defineConfig({
         "react/jsx-runtime",
         "@inubekit/foundations",
         "@inubekit/icon",
-        "@inubekit/select",
         "@inubekit/stack",
         "@inubekit/text",
       ],
