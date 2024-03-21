@@ -5,23 +5,18 @@ import { OptionItem, OptionList } from "@inubekit/select";
 import { Stack } from "@inubekit/stack";
 import { Icon } from "@inubekit/icon";
 
-import { Tab, ITabProps } from "./Tab";
-import { Types } from "./props";
+import { Tab, ITab } from "./Tab";
+import { ITabsTypes } from "./props";
 import { StyledTabs } from "./styles";
 
-export interface ITabsProps {
-  tabs: ITabProps[];
-  type?: Types;
+interface ITabs {
+  tabs: ITab[];
+  type?: ITabsTypes;
   onChange: (id: string) => void;
   selectedTab: string;
 }
 
-export const Tabs = ({
-  tabs,
-  type = "tabs",
-  selectedTab,
-  onChange,
-}: ITabsProps) => {
+const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
   const [displayList, setDisplayList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -105,3 +100,6 @@ export const Tabs = ({
     </StyledTabs>
   );
 };
+
+export { Tabs };
+export type { ITabsTypes, ITabs };
