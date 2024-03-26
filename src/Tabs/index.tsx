@@ -6,17 +6,16 @@ import { Stack } from "@inubekit/stack";
 import { Icon } from "@inubekit/icon";
 
 import { Tab, ITab } from "./Tab";
-import { ITabsTypes } from "./props";
 import { StyledTabs } from "./styles";
 
 interface ITabs {
   tabs: ITab[];
-  type?: ITabsTypes;
+  type?: boolean;
   onChange: (id: string) => void;
   selectedTab: string;
 }
 
-const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
+const Tabs = ({ tabs, type, selectedTab, onChange }: ITabs) => {
   const [displayList, setDisplayList] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -54,7 +53,7 @@ const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
     };
   }, []);
 
-  if (type === "select") {
+  if (type === true) {
     return (
       <div ref={wrapperRef}>
         <StyledTabs type={type}>
@@ -102,4 +101,4 @@ const Tabs = ({ tabs, type = "tabs", selectedTab, onChange }: ITabs) => {
 };
 
 export { Tabs };
-export type { ITabsTypes, ITabs };
+export type { ITabs };

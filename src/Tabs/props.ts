@@ -1,6 +1,3 @@
-const types = ["select", "tabs"] as const;
-type ITabsTypes = (typeof types)[number];
-
 const parameters = {
   docs: {
     description: {
@@ -33,14 +30,13 @@ const props = {
       "attribute shall determine the behavior of the click event and should handle the state for the tabs-component",
   },
   type: {
-    options: types,
-    control: { type: "select" },
+    options: false,
+    control: { type: "boolean" },
     description:
       "shall determine the way the tabs will display in order to avoid horizontal scrolling",
     table: {
-      defaultValue: { summary: "tab" },
+      defaultValue: { summary: "false" },
     },
   },
 };
 export { props, parameters };
-export type { ITabsTypes };
