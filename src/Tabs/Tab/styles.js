@@ -1,17 +1,16 @@
-import styled from "styled-components";
-
 import { inube } from "@inubekit/foundations";
+import styled from "styled-components";
 
 const StyledTab = styled.li`
   width: fit-content;
   user-select: none;
   list-style-type: none;
-  border-bottom: ${({ selected, disabled, theme }) =>
+  border-bottom: ${({ appearance, disabled, selected, theme }) =>
     selected &&
     !disabled &&
     `4px solid ${
-      theme?.color?.stroke?.primary?.regular ||
-      inube.color.stroke.primary.regular
+      theme?.text?.[appearance]?.content.color.regular ||
+      inube.text[appearance].content.color.regular
     }`};
 
   & > p {

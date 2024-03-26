@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Tab, ITabProps } from "../index";
+import { Tab, ITab } from "../index";
 
-export const TabController = (props: ITabProps) => {
+const TabController = (props: ITab) => {
   const { disabled = false } = props;
   const [tabSelected, setTabSelected] = useState(false);
 
@@ -23,3 +23,5 @@ export const TabController = (props: ITabProps) => {
     </div>
   );
 };
+
+export { TabController };

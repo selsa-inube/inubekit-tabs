@@ -1,7 +1,4 @@
-export const types = ["select", "tabs"] as const;
-export type Types = (typeof types)[number];
-
-export const parameters = {
+const parameters = {
   docs: {
     description: {
       component: "Use to alternate among related views within the same context",
@@ -9,7 +6,7 @@ export const parameters = {
   },
 };
 
-export const props = {
+const props = {
   tabs: {
     control: { type: "func" },
     description:
@@ -32,13 +29,15 @@ export const props = {
     description:
       "attribute shall determine the behavior of the click event and should handle the state for the tabs-component",
   },
-  type: {
-    options: types,
+  scroll: {
+    options: [false, true],
     control: { type: "select" },
     description:
-      "shall determine the way the tabs will display in order to avoid horizontal scrolling",
+      "allows the component to determine whether it scrolls sideways",
     table: {
       defaultValue: { summary: "tab" },
     },
   },
 };
+
+export { parameters, props };

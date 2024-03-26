@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Tabs, ITabsProps } from "..";
+import { Tabs, ITabs } from "..";
 
-export const TabsController = (props: ITabsProps) => {
-  const { tabs, type } = props;
+const TabsController = (props: ITabs) => {
+  const { tabs, scroll } = props;
   const [currentTab, setCurrentTab] = useState(props.selectedTab);
 
   const onChange = (tabId: string) => {
@@ -12,9 +12,11 @@ export const TabsController = (props: ITabsProps) => {
   return (
     <Tabs
       tabs={tabs}
-      type={type}
+      scroll={scroll}
       onChange={onChange}
       selectedTab={currentTab}
     />
   );
 };
+
+export { TabsController };
