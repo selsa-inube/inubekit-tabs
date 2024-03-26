@@ -1,4 +1,3 @@
-import { Text } from "@inubekit/text";
 import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
 
@@ -6,13 +5,12 @@ const StyledTab = styled.li`
   width: fit-content;
   user-select: none;
   list-style-type: none;
-  border-bottom: ${({ selected, disabled, theme }) =>
+  border-bottom: ${({ appearance, disabled, selected, theme }) =>
     selected &&
     !disabled &&
     `4px solid ${
-      theme?.text?.[theme?.tabs?.content?.appearance?.selected]?.content.color
-        .regular ||
-      inube.text[inube.tabs.content.appearance.selected].content.color.regular
+      theme?.text?.[appearance]?.content.color.regular ||
+      inube.text[appearance].content.color.regular
     }`};
 
   & > p {
