@@ -35,7 +35,7 @@ const props = {
     description:
       "allows the component to determine whether it scrolls sideways",
     table: {
-      defaultValue: { summary: "tab" },
+      defaultValue: { summary: "false" },
     },
   },
 };
