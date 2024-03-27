@@ -14,11 +14,13 @@ export default defineConfig({
     rollupOptions: {
       external: [
         "react",
+        "react-dom",
+        "react-icons/md",
         "styled-components",
+        "react-icons/md",
         "react/jsx-runtime",
         "@inubekit/foundations",
         "@inubekit/icon",
-        "@inubekit/select",
         "@inubekit/stack",
         "@inubekit/text",
       ],

@@ -29,14 +29,15 @@ const props = {
     description:
       "attribute shall determine the behavior of the click event and should handle the state for the tabs-component",
   },
-  type: {
-    options: false,
-    control: { type: "boolean" },
+  scroll: {
+    options: [false, true],
+    control: { type: "select" },
     description:
-      "shall determine the way the tabs will display in order to avoid horizontal scrolling",
+      "allows the component to determine whether it scrolls sideways",
     table: {
       defaultValue: { summary: "false" },
     },
   },
 };
-export { props, parameters };
+
+export { parameters, props };
