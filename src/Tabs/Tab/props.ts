@@ -1,4 +1,4 @@
-export const props = {
+const props = {
   id: {
     control: { type: "text" },
     description: "shall be the id for the text",
@@ -31,3 +31,5 @@ export const props = {
     description: "shall constitute the content to be displayed",
   },
 };
+
+export { props };
