@@ -1,3 +1,29 @@
+# v2.0.0 (Mon Apr 01 2024)
+
+#### 💥 Breaking Change
+
+- Implement try..catch in props of type function [#3](https://github.com/selsa-inube/inubekit-tabs/pull/3) ([@cmarin001](https://github.com/cmarin001))
+
+#### 🚀 Enhancement
+
+- Adjust and export interfaces [#5](https://github.com/selsa-inube/inubekit-tabs/pull/5) ([@JanuarAsprilla](https://github.com/JanuarAsprilla))
+
+#### 🐛 Bug Fix
+
+- publish `Tabs` package in npm [#2](https://github.com/selsa-inube/inubekit-tabs/pull/2) ([@Andresbl123](https://github.com/Andresbl123))
+
+#### 🔩 Dependency Updates
+
+- Update inubekit/tabs to storybook v8 [#4](https://github.com/selsa-inube/inubekit-tabs/pull/4) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 3
+
+- Andres ([@Andresbl123](https://github.com/Andresbl123))
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+- Januar Asprilla  ([@JanuarAsprilla](https://github.com/JanuarAsprilla))
+
+---
+
 # v0.0.2 (Wed Feb 14 2024)
 
 #### 🐛 Bug Fix
