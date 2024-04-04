@@ -1,3 +1,19 @@
+# v2.0.1 (Thu Apr 04 2024)
+
+#### 🐛 Bug Fix
+
+- Add auto publish [#7](https://github.com/selsa-inube/inubekit-tabs/pull/7) ([@cmarin001](https://github.com/cmarin001))
+
+#### 📝 Documentation
+
+- Publish new version 2.0.0 [#6](https://github.com/selsa-inube/inubekit-tabs/pull/6) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.0.0 (Mon Apr 01 2024)
 
 #### 💥 Breaking Change
