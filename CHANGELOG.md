@@ -1,3 +1,15 @@
+# v2.1.0 (Tue Apr 30 2024)
+
+#### 🚀 Enhancement
+
+- Update workflow in order to avoid merges with failed builds [#8](https://github.com/selsa-inube/inubekit-tabs/pull/8) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.0.1 (Thu Apr 04 2024)
 
 #### 🐛 Bug Fix
