@@ -33,6 +33,7 @@ const Tab = (props: ITab) => {
         }
         disabled={disabled}
         textAlign="start"
+        weight="bold"
       >
         {label}
       </Text>
