@@ -12,7 +12,7 @@ const StyledTab = styled.li`
       theme?.text?.[appearance]?.content.color.regular ||
       inube.text[appearance].content.color.regular
     }`};
-
+  padding-bottom: 4px;
   & > p {
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   }

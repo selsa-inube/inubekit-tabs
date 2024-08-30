@@ -7,6 +7,7 @@ const StyledTabs = styled.div`
   overflow-x: hidden;
   white-space: nowrap;
   width: 100%;
+  align-content: flex-end;
   & > div {
     width: fit-content;
   }
@@ -24,6 +25,9 @@ const StyledContainer = styled.div`
   border-bottom: 2px solid
     ${({ theme }) => theme?.palette?.neutral?.N40 || inube.palette.neutral.N40};
   padding: 0 16px;
+  & > div > figure {
+    padding-top: 4px;
+  }
 `;
 
 export { StyledTabs, StyledContainer };
