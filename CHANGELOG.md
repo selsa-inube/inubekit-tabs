@@ -1,3 +1,15 @@
+# v2.21.0 (Fri Aug 30 2024)
+
+#### 🚀 Enhancement
+
+- Fix Misaligned Border-Bottom on Selected Tab with Divider in Tabs Component [#31](https://github.com/selsa-inube/inubekit-tabs/pull/31) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.20.0 (Fri Aug 30 2024)
 
 #### 🚀 Enhancement
