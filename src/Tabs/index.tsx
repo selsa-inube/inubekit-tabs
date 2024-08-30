@@ -23,7 +23,7 @@ const Tabs = ({ tabs, onChange, scroll = false, selectedTab }: ITabs) => {
 
   return (
     <StyledContainer>
-      <Stack justifyContent="space-between" gap="12px">
+      <Stack justifyContent="space-between" gap="12px" height="32px">
         {scroll && (
           <Icon
             variant="filled"
