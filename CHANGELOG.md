@@ -1,3 +1,15 @@
+# v2.32.0 (Fri Sep 27 2024)
+
+#### 🚀 Enhancement
+
+- Move tabs tokens from foundations to component [#44](https://github.com/selsa-inube/inubekit-tabs/pull/44) ([@cmarin001](https://github.com/cmarin001))
+
+#### Authors: 1
+
+- Cesar Marin Alfonso ([@cmarin001](https://github.com/cmarin001))
+
+---
+
 # v2.31.0 (Wed Sep 25 2024)
 
 #### 🚀 Enhancement
