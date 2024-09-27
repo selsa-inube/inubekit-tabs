@@ -34,7 +34,6 @@ Default.args = {
   ],
   selectedTab: "generalInformation",
   scroll: true,
-  showChevrons: true,
 };
 
 export { Default };

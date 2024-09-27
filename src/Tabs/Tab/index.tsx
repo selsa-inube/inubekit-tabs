@@ -1,8 +1,8 @@
-import { Text } from "@inubekit/text";
+import { Text, TextTokens } from "@inubekit/text";
 import { StyledTab } from "./styles";
-import { inube } from "@inubekit/foundations";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
+import { tokens } from "../Tokens/tokens";
 
 interface ITab {
   label: string;
@@ -13,10 +13,10 @@ interface ITab {
 
 const Tab = (props: ITab) => {
   const { disabled = false, selected = false, id, label } = props;
-  const theme: typeof inube = useContext(ThemeContext);
+  const theme = useContext(ThemeContext) as { tabs: typeof tokens };
   const selectedAppearance =
     theme?.tabs?.content?.appearance?.selected ||
-    inube.tabs.content.appearance.selected;
+    tokens.content.appearance.selected;
 
   return (
     <StyledTab
@@ -29,7 +29,7 @@ const Tab = (props: ITab) => {
         type="label"
         size="medium"
         appearance={
-          selected ? (selectedAppearance as keyof typeof inube.text) : "gray"
+          selected ? (selectedAppearance as keyof typeof TextTokens) : "gray"
         }
         disabled={disabled}
         textAlign="start"

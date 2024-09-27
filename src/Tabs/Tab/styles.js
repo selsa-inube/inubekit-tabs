@@ -1,5 +1,5 @@
-import { inube } from "@inubekit/foundations";
 import styled from "styled-components";
+import { TextTokens } from "@inubekit/text";
 
 const StyledTab = styled.li`
   width: fit-content;
@@ -10,7 +10,7 @@ const StyledTab = styled.li`
     !disabled &&
     `4px solid ${
       theme?.text?.[appearance]?.content.color.regular ||
-      inube.text[appearance].content.color.regular
+      TextTokens[appearance].content.color.regular
     }`};
   padding-bottom: 4px;
   & > p {
